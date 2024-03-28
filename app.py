@@ -37,7 +37,7 @@ if user_query:
             instructions="Analyze and suggest optimizations based on the test scripts.",
         )
 
-        with st.spinner("Processing your request..."):
+        with st.spinner("Processing your request to review the test cases/use cases that you entered above..."):
             while True:
                 run = openai.beta.threads.runs.retrieve(
                     thread_id=thread.id, run_id=run.id
@@ -52,7 +52,7 @@ if user_query:
                 if message.content and message.content[0].text.value.strip() and message.role=="assistant":
                     content = message.content[0].text.value
                 else:
-                    content = "There is no context for this question."
+                    content = ""
                 st.write(content)
     except Exception as e:
         st.error(f"An error occurred while processing your request: {e}")
