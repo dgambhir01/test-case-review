@@ -49,7 +49,7 @@ if user_query:
             messages = openai.beta.threads.messages.list(thread_id=thread.id)
             st.header("Assistant's Suggestions:")
             for message in messages.data:
-                if message.content and message.content[0].text.value.strip():
+                if message.content and message.content[0].text.value.strip() and message.role=="assistant":
                     content = message.content[0].text.value
                 else:
                     content = "There is no context for this question."
